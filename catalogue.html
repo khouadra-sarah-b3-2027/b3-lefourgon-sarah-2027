@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalogue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7faf8;
+      color: #1f2937;
+    }
+    .container {
+      width: min(100% - 32px, 1100px);
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #2d6a4f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      color: #2d6a4f;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .tag {
+      display: inline-block;
+      background: #d8f3dc;
+      color: #2d6a4f;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-weight: bold;
+      color: #2d6a4f;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="index.html">← Retour à l’accueil</a>
+    <h1>Catalogue</h1>
+    <p>Exemple de catalogue simplifié pour illustrer la structure produit du site.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="tag">Consigné</div>
+        <h3>Eau pétillante</h3>
+        <p>Bouteille en verre réutilisable.</p>
+        <div class="price">1,90 €</div>
+      </div>
+
+      <div class="card">
+        <div class="tag">Consigné</div>
+        <h3>Jus de pomme</h3>
+        <p>Format familial, emballage réemployé.</p>
+        <div class="price">2,80 €</div>
+      </div>
+
+      <div class="card">
+        <div class="tag">Consigné</div>
+        <h3>Limonade</h3>
+        <p>Produit du quotidien, livraison simplifiée.</p>
+        <div class="price">2,20 €</div>
+      </div>
+
+      <div class="card">
+        <div class="tag">Consigné</div>
+        <h3>Thé glacé</h3>
+        <p>Alternative réutilisable et pratique.</p>
+        <div class="price">2,50 €</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
