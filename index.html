@@ -1,12 +1,538 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Projet Le Fourgon - Sarah</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Bloc 3 – Refonte digitale responsable</title>
+  <meta name="description" content="Prototype de refonte digitale inspiré du projet Le Fourgon : solution de consigne, parcours BtoB/BtoC, impact écologique et expérience mobile-first." />
+  <style>
+    :root {
+      --green-dark: #2d6a4f;
+      --green-light: #d8f3dc;
+      --green-soft: #edf7ef;
+      --orange: #f4845f;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --bg: #f7faf8;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    .nav {
+      display: none;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover {
+      color: var(--green-dark);
+    }
+
+    .cta-top {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 48px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #eef9f1 0%, #ffffff 100%);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green-dark);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 2rem;
+      line-height: 1.15;
+      color: var(--green-dark);
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    .btn-secondary {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .hero-visual {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 16px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .stat {
+      background: var(--green-soft);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 28px 0;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      color: var(--green-dark);
+    }
+
+    .section-subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .cards-3,
+    .cards-2 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--green-dark);
+    }
+
+    .steps {
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding-left: 56px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--white);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+      color: var(--white);
+    }
+
+    .highlight h2,
+    .highlight h3,
+    .highlight p {
+      color: var(--white);
+    }
+
+    .highlight .btn {
+      background: var(--white);
+      color: var(--green-dark);
+    }
+
+    .testimonials .card {
+      border-top: 5px solid var(--green-light);
+    }
+
+    .quote {
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .small {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      background: #163828;
+      color: #e5f3ea;
+      margin-top: 36px;
+      padding: 36px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .footer h4 {
+      margin: 0 0 10px;
+      color: var(--white);
+    }
+
+    .footer a {
+      color: #d8f3dc;
+    }
+
+    .footer-bottom {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.9rem;
+      color: #cfe7d7;
+    }
+
+    @media (min-width: 768px) {
+      .nav {
+        display: flex;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+
+      .hero-actions {
+        flex-direction: row;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cards-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cards-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.3fr 1fr 1fr;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align: center; margin-top: 100px;">
-  <h1>🚀 Site en cours de création</h1>
-  <p>Refonte digitale - Le Fourgon</p>
-  <p>Projet Bloc 3 - Sarah Khouadra</p>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="logo">Le Fourgon – Prototype</div>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#impact">Impact</a>
+        <a href="#fonctionnement">Comment ça marche</a>
+        <a href="#entreprises">Entreprises</a>
+        <a href="#temoignages">Témoignages</a>
+      </nav>
+      <a class="cta-top" href="#entreprises">Demander un devis</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Refonte digitale • Prototype de démonstration</span>
+          <h1>La consigne sans contrainte, pensée pour les familles et les entreprises</h1>
+          <p>
+            Une expérience plus fluide, plus claire et plus performante pour commander des boissons
+            consignées, suivre son impact écologique et simplifier la transition vers des usages plus durables.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#entreprises">Je suis une entreprise</a>
+            <a class="btn btn-secondary" href="#fonctionnement">Je commande pour ma famille</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Chiffres clés du projet">
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>+40 %</strong>
+              trafic mobile
+            </div>
+            <div class="stat">
+              <strong>50</strong>
+              devis BtoB / mois
+            </div>
+            <div class="stat">
+              <strong>8 %</strong>
+              conversion BtoB
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section">
+      <div class="container">
+        <h2 class="section-title">Un modèle simple, mesurable et utile</h2>
+        <p class="section-subtitle">
+          Le prototype met en avant l’impact écologique pour rendre la proposition de valeur plus concrète dès l’arrivée sur le site.
+        </p>
+        <div class="cards-3">
+          <article class="card">
+            <h3>Bouteilles évitées</h3>
+            <p>Visualiser l’impact en temps réel pour renforcer l’engagement et la compréhension du service.</p>
+          </article>
+          <article class="card">
+            <h3>Livraison simplifiée</h3>
+            <p>Réduire les frictions de commande avec une navigation mobile-first et des CTA visibles.</p>
+          </article>
+          <article class="card">
+            <h3>Suivi de performance</h3>
+            <p>Valoriser les résultats via des indicateurs clairs, utiles aussi bien au BtoC qu’au BtoB.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fonctionnement" class="section">
+      <div class="container">
+        <h2 class="section-title">Comment ça marche</h2>
+        <p class="section-subtitle">
+          Le parcours est pensé pour rester simple, pédagogique et rapide à comprendre.
+        </p>
+        <div class="cards-3 steps">
+          <article class="card step">
+            <h3>Je commande</h3>
+            <p>Choix des produits, parcours raccourci, visibilité immédiate des informations essentielles.</p>
+          </article>
+          <article class="card step">
+            <h3>Je consomme</h3>
+            <p>Expérience claire et rassurante, adaptée aux usages du quotidien sur mobile et desktop.</p>
+          </article>
+          <article class="card step">
+            <h3>Je rends</h3>
+            <p>Le retour des contenants est intégré au parcours pour rendre la consigne naturelle et fluide.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="entreprises" class="section">
+      <div class="container">
+        <div class="card highlight">
+          <h2 class="section-title">Une entrée dédiée pour les entreprises & collectivités</h2>
+          <p class="section-subtitle">
+            Cette section répond aux attentes spécifiques de la cible BtoB : clarté, preuves d’impact, autonomie et demande de devis simplifiée.
+          </p>
+          <div class="cards-2">
+            <div>
+              <h3>Ce que le site doit permettre</h3>
+              <p>Présenter une offre claire, montrer la valeur RSE, rassurer par la preuve sociale et faciliter la prise de contact.</p>
+            </div>
+            <div>
+              <h3>Fonctionnalités clés</h3>
+              <p>Formulaire de devis, témoignages clients, simulateur d’impact et espace client dédié.</p>
+            </div>
+          </div>
+          <div style="margin-top: 20px;">
+            <a class="btn" href="mailto:contact@example.com">Demander un devis</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="temoignages" class="section testimonials">
+      <div class="container">
+        <h2 class="section-title">Témoignages</h2>
+        <p class="section-subtitle">
+          La preuve sociale aide à crédibiliser l’offre et à soutenir la conversion.
+        </p>
+        <div class="cards-3">
+          <article class="card">
+            <p class="quote">“Le service est très simple à mettre en place et l’impact est visible rapidement.”</p>
+            <p class="small"><strong>Responsable RSE</strong> – Entreprise cliente</p>
+          </article>
+          <article class="card">
+            <p class="quote">“Le parcours est plus clair et les bénéfices écologiques sont mieux expliqués.”</p>
+            <p class="small"><strong>Utilisatrice BtoC</strong> – Test bêta</p>
+          </article>
+          <article class="card">
+            <p class="quote">“L’entrée BtoB dédiée facilite vraiment la compréhension de l’offre entreprise.”</p>
+            <p class="small"><strong>Office manager</strong> – Test utilisateur</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Pourquoi cette version est cohérente avec le projet</h2>
+        <div class="cards-2">
+          <article class="card">
+            <h3>Approche mobile-first</h3>
+            <p>La structure est pensée pour un usage mobile prioritaire, avec lecture rapide, blocs verticaux et actions visibles.</p>
+          </article>
+          <article class="card">
+            <h3>Bonne base d’évolution</h3>
+            <p>Cette première version peut ensuite évoluer vers un site plus dynamique avec plusieurs pages, base de données et CMS headless.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Prototype de soutenance</h4>
+          <p>Refonte digitale responsable inspirée du projet Le Fourgon.</p>
+        </div>
+        <div>
+          <h4>Liens utiles</h4>
+          <p><a href="#impact">Impact</a></p>
+          <p><a href="#entreprises">Entreprises</a></p>
+          <p><a href="#temoignages">Témoignages</a></p>
+        </div>
+        <div>
+          <h4>Mentions</h4>
+          <p>Projet pédagogique</p>
+          <p>Nom de domaine neutre recommandé</p>
+          <p>Conception orientée SEO & accessibilité</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Sarah Khouadra – Projet Bloc 3 – 2027
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
