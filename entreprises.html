@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entreprises & collectivités</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7faf8;
+      color: #1f2937;
+    }
+    .container {
+      width: min(100% - 32px, 1000px);
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    h1, h2 {
+      color: #2d6a4f;
+    }
+    .btn {
+      display: inline-block;
+      background: #2d6a4f;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #2d6a4f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="index.html">← Retour à l’accueil</a>
+
+    <div class="card">
+      <h1>Entreprises & collectivités</h1>
+      <p>
+        Cette page présente l’offre BtoB du projet : réduction du plastique jetable,
+        simplification logistique et valorisation de l’impact RSE.
+      </p>
+
+      <h2>Pourquoi cette offre est utile</h2>
+      <p>
+        Le site doit permettre aux responsables RSE, acheteurs et office managers
+        de comprendre rapidement l’offre et de demander un devis sans friction.
+      </p>
+
+      <h2>Demander un devis</h2>
+      <form>
+        <input type="text" placeholder="Nom de l’entreprise" required>
+        <input type="text" placeholder="Nom / Prénom" required>
+        <input type="email" placeholder="Email professionnel" required>
+        <textarea rows="5" placeholder="Décrivez votre besoin"></textarea>
+        <button class="btn" type="submit">Envoyer la demande</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
